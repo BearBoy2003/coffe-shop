@@ -22,8 +22,8 @@
 						/>
 
 						<form
-							action="#"
 							class="mt-5"
+							@submit.prevent="submitForm"
 						>
 							<div class="form-group row">
 								<div class="col col-12 col-sm-3 d-flex align-items-center">
@@ -40,6 +40,7 @@
 										type="text"
 										class="form-control"
 										id="name-input"
+										v-model="formData.name"
 									/>
 								</div>
 							</div>
@@ -59,6 +60,7 @@
 										type="email"
 										class="form-control"
 										id="email-input"
+										v-model="formData.email"
 									/>
 								</div>
 							</div>
@@ -77,6 +79,7 @@
 										type="tel"
 										class="form-control"
 										id="phone-input"
+										v-model="formData.phone"
 									/>
 								</div>
 							</div>
@@ -98,6 +101,7 @@
 										id="message"
 										rows="5"
 										placeholder="Leave your comments here"
+										v-model="formData.message"
 									></textarea>
 								</div>
 							</div>
@@ -123,6 +127,21 @@ export default {
 	components: {
 		NavBarComponent,
 		PageHeaderTitleComponent
+	},
+	data() {
+		return {
+			formData: {
+				name: '',
+				email: '',
+				phone: '',
+				message: ''
+			}
+		}
+	},
+	methods: {
+		submitForm() {
+			console.log(this.formData)
+		}
 	}
 }
 </script>

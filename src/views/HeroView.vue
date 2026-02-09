@@ -9,7 +9,9 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
-						<PageHeaderTitleComponent title="Everything You Love About Coffee" />
+						<PageHeaderTitleComponent
+							title="Everything You Love About Coffee"
+						/>
 						<img
 							class="beanslogo"
 							src="@/assets/logo/Beans_logo.svg"
@@ -20,8 +22,9 @@
 						</div>
 						<div class="preview__subtitle">Want to try our beans?</div>
 						<a
-							href="./coffeepage.html"
+							href="#our-best"
 							class="preview__btn"
+							@click.prevent="smoothScroll"
 						>
 							More
 						</a>
@@ -59,14 +62,18 @@
 				</div>
 			</div>
 		</section>
-		<section class="best">
+		<section
+			id="our-best"
+			ref="ourBest"
+			class="best"
+		>
 			<div class="container">
 				<div class="title">Our best</div>
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
 						<div class="best__wrapper">
 							<ProductCard
-								v-for="product in products"
+								v-for="product in bestsellers"
 								:key="product.id"
 								:image="product.image"
 								:title="product.title"
@@ -82,8 +89,9 @@
 
 <script>
 import NavBarComponent from '@/components/NavBarComponent.vue'
-import ProductCard from '@/components/ProductCard.vue'
 import PageHeaderTitleComponent from '@/components/PageHeaderTitleComponent.vue'
+import ProductCard from '@/components/ProductCard.vue'
+import { scrollIntoView } from 'seamless-scroll-polyfill'
 
 export default {
 	components: {
@@ -93,7 +101,7 @@ export default {
 	},
 	data() {
 		return {
-			products: [
+			bestsellers: [
 				{
 					id: 1,
 					image: require('@/assets/img/coffee-1.jpg'),
@@ -113,6 +121,14 @@ export default {
 					price: '6.99$'
 				}
 			]
+		}
+	},
+	methods: {
+		smoothScroll() {
+			scrollIntoView(this.$refs.ourBest, {
+				behavior: 'smooth',
+				block: 'start'
+			})
 		}
 	}
 }
