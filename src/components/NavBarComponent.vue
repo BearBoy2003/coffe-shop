@@ -4,21 +4,21 @@
 			class="header d-flex justify-content-center justify-content-md-start flex-wrap"
 		>
 			<li class="header__item">
-				<a href="./index.html">
+				<router-link to="/">
 					<img
 						src="@/assets/logo/Logo.svg"
 						alt="logo"
 					/>
-				</a>
+				</router-link>
 			</li>
 			<li class="header__item">
-				<a href="./coffeepage.html">Our coffee</a>
+				<router-link to="/our-coffee">Our coffee</router-link>
 			</li>
 			<li class="header__item">
-				<a href="./goodspage.html">For your pleasure</a>
+				<router-link to="/for-your-pleasure">For your pleasure</router-link>
 			</li>
 			<li class="header__item">
-				<a href="./contacts.html">Contact us</a>
+				<router-link to="/contact-us">Contact us</router-link>
 			</li>
 		</ul>
 	</header>
