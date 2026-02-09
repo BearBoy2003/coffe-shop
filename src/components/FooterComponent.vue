@@ -4,20 +4,12 @@
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3">
 					<ul class="footer d-flex flex-wrap">
-						<li
+						<NavLinkItemComponent
 							v-for="item in links"
 							:key="item.id"
-							class="footer__item"
-						>
-							<router-link :to="item.link">
-								<img
-									v-if="item.icon"
-									:src="item.icon"
-									alt="logo"
-								/>
-								<span v-else>{{ item.text }}</span>
-							</router-link>
-						</li>
+							:item="item"
+							item-class="footer__item"
+						/>
 					</ul>
 				</div>
 			</div>
@@ -31,7 +23,12 @@
 </template>
 
 <script>
+import NavLinkItemComponent from '@/components/NavLinkItemComponent.vue'
+
 export default {
+	components: {
+		NavLinkItemComponent
+	},
 	data() {
 		return {
 			links: [

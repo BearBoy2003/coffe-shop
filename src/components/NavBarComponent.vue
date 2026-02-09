@@ -3,26 +3,23 @@
 		<ul
 			class="header d-flex justify-content-center justify-content-md-start flex-wrap"
 		>
-			<li
+			<NavLinkItemComponent
 				v-for="item in links"
 				:key="item.id"
-				class="header__item"
-			>
-				<router-link :to="item.link">
-					<img
-						v-if="item.icon"
-						:src="item.icon"
-						alt="logo"
-					/>
-					<span v-else>{{ item.text }}</span>
-				</router-link>
-			</li>
+				:item="item"
+				item-class="header__item"
+			/>
 		</ul>
 	</header>
 </template>
 
 <script>
+import NavLinkItemComponent from '@/components/NavLinkItemComponent.vue'
+
 export default {
+	components: {
+		NavLinkItemComponent
+	},
 	data() {
 		return {
 			links: [

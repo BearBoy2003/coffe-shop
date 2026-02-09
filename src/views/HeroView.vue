@@ -9,7 +9,7 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
-						<h1 class="title-big">Everything You Love About Coffee</h1>
+						<PageHeaderTitleComponent title="Everything You Love About Coffee" />
 						<img
 							class="beanslogo"
 							src="@/assets/logo/Beans_logo.svg"
@@ -83,11 +83,13 @@
 <script>
 import NavBarComponent from '@/components/NavBarComponent.vue'
 import ProductCard from '@/components/ProductCard.vue'
+import PageHeaderTitleComponent from '@/components/PageHeaderTitleComponent.vue'
 
 export default {
 	components: {
 		NavBarComponent,
-		ProductCard
+		ProductCard,
+		PageHeaderTitleComponent
 	},
 	data() {
 		return {
