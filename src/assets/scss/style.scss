@@ -1,7 +1,7 @@
-@import 'header';
-@import 'mainpage';
-@import 'pages';
-@import 'footer';
+@use 'header';
+@use 'mainpage';
+@use 'pages';
+@use 'footer';
 
 * {
 	box-sizing: border-box;
