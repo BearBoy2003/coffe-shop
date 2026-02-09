@@ -5,7 +5,7 @@
 		>
 			<NavLinkItemComponent
 				v-for="item in links"
-				:key="item.id"
+				:key="item.link"
 				:item="item"
 				item-class="header__item"
 			/>
@@ -15,35 +15,25 @@
 
 <script>
 import NavLinkItemComponent from '@/components/NavLinkItemComponent.vue'
+import headerLogo from '@/assets/logo/Logo.svg'
+import { NAV_LINKS } from '@/constants/navigation'
+
+const headerLinks = [
+	{
+		link: '/',
+		icon: headerLogo,
+		alt: 'Main logo'
+	},
+	...NAV_LINKS
+]
 
 export default {
 	components: {
 		NavLinkItemComponent
 	},
-	data() {
-		return {
-			links: [
-				{
-					id: 0,
-					link: '/',
-					icon: require('@/assets/logo/Logo.svg')
-				},
-				{
-					id: 1,
-					text: 'Our coffee',
-					link: '/our-coffee'
-				},
-				{
-					id: 2,
-					text: 'For your pleasure',
-					link: '/for-your-pleasure'
-				},
-				{
-					id: 3,
-					text: 'Contact us',
-					link: '/contact-us'
-				}
-			]
+	computed: {
+		links() {
+			return headerLinks
 		}
 	}
 }

@@ -6,7 +6,7 @@
 					<ul class="footer d-flex flex-wrap">
 						<NavLinkItemComponent
 							v-for="item in links"
-							:key="item.id"
+							:key="item.link"
 							:item="item"
 							item-class="footer__item"
 						/>
@@ -24,35 +24,25 @@
 
 <script>
 import NavLinkItemComponent from '@/components/NavLinkItemComponent.vue'
+import footerLogo from '@/assets/logo/Logo_black.svg'
+import { NAV_LINKS } from '@/constants/navigation'
+
+const footerLinks = [
+	{
+		link: '/',
+		icon: footerLogo,
+		alt: 'Footer logo'
+	},
+	...NAV_LINKS
+]
 
 export default {
 	components: {
 		NavLinkItemComponent
 	},
-	data() {
-		return {
-			links: [
-				{
-					id: 0,
-					link: '/',
-					icon: require('@/assets/logo/Logo_black.svg')
-				},
-				{
-					id: 1,
-					text: 'Our coffee',
-					link: '/our-coffee'
-				},
-				{
-					id: 2,
-					text: 'For your pleasure',
-					link: '/for-your-pleasure'
-				},
-				{
-					id: 3,
-					text: 'Contact us',
-					link: '/contact-us'
-				}
-			]
+	computed: {
+		links() {
+			return footerLinks
 		}
 	}
 }
