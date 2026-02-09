@@ -3,23 +3,51 @@
 		<ul
 			class="header d-flex justify-content-center justify-content-md-start flex-wrap"
 		>
-			<li class="header__item">
-				<router-link to="/">
+			<li
+				v-for="item in links"
+				:key="item.id"
+				class="header__item"
+			>
+				<router-link :to="item.link">
 					<img
-						src="@/assets/logo/Logo.svg"
+						v-if="item.icon"
+						:src="item.icon"
 						alt="logo"
 					/>
+					<span v-else>{{ item.text }}</span>
 				</router-link>
-			</li>
-			<li class="header__item">
-				<router-link to="/our-coffee">Our coffee</router-link>
-			</li>
-			<li class="header__item">
-				<router-link to="/for-your-pleasure">For your pleasure</router-link>
-			</li>
-			<li class="header__item">
-				<router-link to="/contact-us">Contact us</router-link>
 			</li>
 		</ul>
 	</header>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			links: [
+				{
+					id: 0,
+					link: '/',
+					icon: require('@/assets/logo/Logo.svg')
+				},
+				{
+					id: 1,
+					text: 'Our coffee',
+					link: '/our-coffee'
+				},
+				{
+					id: 2,
+					text: 'For your pleasure',
+					link: '/for-your-pleasure'
+				},
+				{
+					id: 3,
+					text: 'Contact us',
+					link: '/contact-us'
+				}
+			]
+		}
+	}
+}
+</script>

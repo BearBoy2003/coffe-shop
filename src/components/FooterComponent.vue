@@ -4,24 +4,19 @@
 			<div class="row">
 				<div class="col-lg-6 offset-lg-3">
 					<ul class="footer d-flex flex-wrap">
-						<li class="footer__item">
-							<router-link to="/">
+						<li
+							v-for="item in links"
+							:key="item.id"
+							class="footer__item"
+						>
+							<router-link :to="item.link">
 								<img
-									src="@/assets/logo/Logo_black.svg"
+									v-if="item.icon"
+									:src="item.icon"
 									alt="logo"
 								/>
+								<span v-else>{{ item.text }}</span>
 							</router-link>
-						</li>
-						<li class="footer__item">
-							<router-link to="/our-coffee">Our coffee</router-link>
-						</li>
-						<li class="footer__item">
-							<router-link to="/for-your-pleasure">
-								For your pleasure
-							</router-link>
-						</li>
-						<li class="footer__item">
-							<router-link to="/contact-us">Contact us</router-link>
 						</li>
 					</ul>
 				</div>
@@ -34,3 +29,34 @@
 		</div>
 	</footer>
 </template>
+
+<script>
+export default {
+	data() {
+		return {
+			links: [
+				{
+					id: 0,
+					link: '/',
+					icon: require('@/assets/logo/Logo_black.svg')
+				},
+				{
+					id: 1,
+					text: 'Our coffee',
+					link: '/our-coffee'
+				},
+				{
+					id: 2,
+					text: 'For your pleasure',
+					link: '/for-your-pleasure'
+				},
+				{
+					id: 3,
+					text: 'Contact us',
+					link: '/contact-us'
+				}
+			]
+		}
+	}
+}
+</script>

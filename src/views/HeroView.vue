@@ -65,9 +65,13 @@
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
 						<div class="best__wrapper">
-							<ProductCard />
-							<ProductCard />
-							<ProductCard />
+							<ProductCard
+								v-for="product in products"
+								:key="product.id"
+								:image="product.image"
+								:title="product.title"
+								:price="product.price"
+							/>
 						</div>
 					</div>
 				</div>
@@ -84,6 +88,30 @@ export default {
 	components: {
 		NavBarComponent,
 		ProductCard
+	},
+	data() {
+		return {
+			products: [
+				{
+					id: 1,
+					image: require('@/assets/img/coffee-1.jpg'),
+					title: 'Solimo Coffee Beans 2kg',
+					price: '10.73$'
+				},
+				{
+					id: 2,
+					image: require('@/assets/img/coffee-2.jpg'),
+					title: 'Presto Coffee Beans 1kg',
+					price: '15.99$'
+				},
+				{
+					id: 3,
+					image: require('@/assets/img/coffee-3.jpg'),
+					title: 'AROMISTICO Coffee 1kg',
+					price: '6.99$'
+				}
+			]
+		}
 	}
 }
 </script>
