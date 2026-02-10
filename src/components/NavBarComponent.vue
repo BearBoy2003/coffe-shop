@@ -4,8 +4,8 @@
 			class="header d-flex justify-content-center justify-content-md-start flex-wrap"
 		>
 			<NavLinkItemComponent
-				v-for="item in links"
-				:key="item.link"
+				v-for="item in headerLinks"
+				:key="item.id"
 				:item="item"
 				item-class="header__item"
 			/>
@@ -15,26 +15,14 @@
 
 <script>
 import NavLinkItemComponent from '@/components/NavLinkItemComponent.vue'
-import headerLogo from '@/assets/logo/Logo.svg'
-import { NAV_LINKS } from '@/constants/navigation'
-
-const headerLinks = [
-	{
-		link: '/',
-		icon: headerLogo,
-		alt: 'Main logo'
-	},
-	...NAV_LINKS
-]
+import { mapGetters } from 'vuex'
 
 export default {
 	components: {
 		NavLinkItemComponent
 	},
 	computed: {
-		links() {
-			return headerLinks
-		}
+		...mapGetters('links', ['headerLinks'])
 	}
 }
 </script>

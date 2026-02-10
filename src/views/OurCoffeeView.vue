@@ -82,19 +82,14 @@
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
 						<div class="shop__wrapper">
-							<div
+							<ShopProductCard
 								v-for="item in coffeeProducts"
 								:key="item.id"
-								class="shop__item"
-							>
-								<img
-									:src="item.image"
-									:alt="item.title"
-								/>
-								<div class="shop__item-title">{{ item.title }}</div>
-								<div class="shop__item-country">{{ item.country }}</div>
-								<div class="shop__item-price">{{ item.price }}</div>
-							</div>
+								:image="item.image"
+								:title="item.title"
+								:country="item.country"
+								:price="item.price"
+							/>
 						</div>
 					</div>
 				</div>
@@ -106,59 +101,17 @@
 <script>
 import NavBarComponent from '@/components/NavBarComponent.vue'
 import PageHeaderTitleComponent from '@/components/PageHeaderTitleComponent.vue'
+import ShopProductCard from '@/components/ShopProductCard.vue'
+import { mapGetters } from 'vuex'
 
 export default {
 	components: {
 		NavBarComponent,
-		PageHeaderTitleComponent
+		PageHeaderTitleComponent,
+		ShopProductCard
 	},
-	data() {
-		return {
-			coffeeProducts: [
-				{
-					id: 1,
-					image: require('@/assets/img/coffee-1.jpg'),
-					title: 'Solimo Coffee Beans 2kg',
-					country: 'Brazil',
-					price: '10.73$'
-				},
-				{
-					id: 2,
-					image: require('@/assets/img/coffee-2.jpg'),
-					title: 'Presto Coffee Beans 1kg',
-					country: 'Kenya',
-					price: '15.99$'
-				},
-				{
-					id: 3,
-					image: require('@/assets/img/coffee-3.jpg'),
-					title: 'AROMISTICO Coffee 1kg',
-					country: 'Columbia',
-					price: '6.99$'
-				},
-				{
-					id: 4,
-					image: require('@/assets/img/coffee-1.jpg'),
-					title: 'Bourbon Select 1kg',
-					country: 'Brazil',
-					price: '12.40$'
-				},
-				{
-					id: 5,
-					image: require('@/assets/img/coffee-2.jpg'),
-					title: 'Kenya AA Roast 500g',
-					country: 'Kenya',
-					price: '9.80$'
-				},
-				{
-					id: 6,
-					image: require('@/assets/img/coffee-3.jpg'),
-					title: 'Andes Blend 1kg',
-					country: 'Columbia',
-					price: '11.25$'
-				}
-			]
-		}
+	computed: {
+		...mapGetters('products', ['coffeeProducts'])
 	}
 }
 </script>

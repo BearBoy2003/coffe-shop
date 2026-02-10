@@ -92,6 +92,7 @@ import NavBarComponent from '@/components/NavBarComponent.vue'
 import PageHeaderTitleComponent from '@/components/PageHeaderTitleComponent.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import { scrollIntoView } from 'seamless-scroll-polyfill'
+import { mapGetters } from 'vuex'
 
 export default {
 	components: {
@@ -99,29 +100,8 @@ export default {
 		ProductCard,
 		PageHeaderTitleComponent
 	},
-	data() {
-		return {
-			bestsellers: [
-				{
-					id: 1,
-					image: require('@/assets/img/coffee-1.jpg'),
-					title: 'Solimo Coffee Beans 2kg',
-					price: '10.73$'
-				},
-				{
-					id: 2,
-					image: require('@/assets/img/coffee-2.jpg'),
-					title: 'Presto Coffee Beans 1kg',
-					price: '15.99$'
-				},
-				{
-					id: 3,
-					image: require('@/assets/img/coffee-3.jpg'),
-					title: 'AROMISTICO Coffee 1kg',
-					price: '6.99$'
-				}
-			]
-		}
+	computed: {
+		...mapGetters('products', ['bestsellers'])
 	},
 	methods: {
 		smoothScroll() {

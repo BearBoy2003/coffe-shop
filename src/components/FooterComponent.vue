@@ -5,8 +5,8 @@
 				<div class="col-lg-6 offset-lg-3">
 					<ul class="footer d-flex flex-wrap">
 						<NavLinkItemComponent
-							v-for="item in links"
-							:key="item.link"
+							v-for="item in footerLinks"
+							:key="item.id"
 							:item="item"
 							item-class="footer__item"
 						/>
@@ -24,26 +24,14 @@
 
 <script>
 import NavLinkItemComponent from '@/components/NavLinkItemComponent.vue'
-import footerLogo from '@/assets/logo/Logo_black.svg'
-import { NAV_LINKS } from '@/constants/navigation'
-
-const footerLinks = [
-	{
-		link: '/',
-		icon: footerLogo,
-		alt: 'Footer logo'
-	},
-	...NAV_LINKS
-]
+import { mapGetters } from 'vuex'
 
 export default {
 	components: {
 		NavLinkItemComponent
 	},
 	computed: {
-		links() {
-			return footerLinks
-		}
+		...mapGetters('links', ['footerLinks'])
 	}
 }
 </script>
