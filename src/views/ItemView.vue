@@ -7,22 +7,25 @@
 						<NavBarComponent />
 					</div>
 				</div>
-				<PageHeaderTitleComponent title="Our Coffee" />
+				<PageHeaderTitleComponent :title="pageTitle" />
 			</div>
 		</div>
 
 		<section class="shop">
 			<div class="container">
-				<div class="row">
+				<div
+					v-if="product"
+					class="row"
+				>
 					<div class="col-lg-5 offset-1">
 						<img
 							class="shop__girl"
-							src="@/assets/img/coffee_item.jpg"
-							alt="coffee_item"
+							:src="product.image"
+							:alt="product.title"
 						/>
 					</div>
 					<div class="col-lg-4">
-						<div class="title">About it</div>
+						<div class="title">{{ product.title }}</div>
 						<img
 							class="beanslogo"
 							src="@/assets/logo/Beans_logo_dark.svg"
@@ -30,7 +33,7 @@
 						/>
 						<div class="shop__point">
 							<span>Country:</span>
-							Brazil
+							{{ product.country }}
 						</div>
 						<div class="shop__point">
 							<span>Description:</span>
@@ -41,9 +44,15 @@
 						</div>
 						<div class="shop__point">
 							<span>Price:</span>
-							<span class="shop__point-price">16.99$</span>
+							<span class="shop__point-price">{{ product.price }}</span>
 						</div>
 					</div>
+				</div>
+				<div
+					v-else
+					class="row"
+				>
+					<div class="col text-center">Product not found</div>
 				</div>
 			</div>
 		</section>
@@ -53,11 +62,29 @@
 <script>
 import NavBarComponent from '@/components/NavBarComponent.vue'
 import PageHeaderTitleComponent from '@/components/PageHeaderTitleComponent.vue'
+import navigate from '@/mixins/navigate'
 
 export default {
+	mixins: [navigate],
 	components: {
 		NavBarComponent,
 		PageHeaderTitleComponent
+	},
+	computed: {
+		product() {
+			return this.getCurrentProduct()
+		},
+		pageTitle() {
+			if (this.pageName === 'coffee') {
+				return 'Our Coffee'
+			}
+
+			if (this.pageName === 'goods') {
+				return 'For your pleasure'
+			}
+
+			return 'Product'
+		}
 	}
 }
 </script>

@@ -117,7 +117,11 @@ const state = () => ({
 const getters = {
 	bestsellers: (state) => state.bestsellers,
 	coffeeProducts: (state) => state.coffeeProducts,
-	pleasureProducts: (state) => state.pleasureProducts
+	pleasureProducts: (state) => state.pleasureProducts,
+	getCoffeeById: (state) => (id) =>
+		state.coffeeProducts.find((product) => product.id === Number(id)),
+	getGoodsById: (state) => (id) =>
+		state.pleasureProducts.find((product) => product.id === Number(id))
 }
 
 export default {
