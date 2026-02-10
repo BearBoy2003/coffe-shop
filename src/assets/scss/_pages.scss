@@ -157,3 +157,16 @@ input {
 	margin-top: 40px;
 	border-color: rgba(0, 0, 0, 0.49) !important;
 }
+
+.contacts {
+	.text-danger {
+		display: block;
+		margin-top: 4px;
+		font-size: 12px;
+	}
+
+	&__offer-label {
+		margin-bottom: 0;
+		margin-left: 8px;
+	}
+}
