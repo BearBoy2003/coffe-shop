@@ -1,7 +1,7 @@
 <template>
 	<header>
 		<ul
-			class="header d-flex justify-content-center justify-content-md-start flex-wrap"
+			class="header d-flex justify-content-center justify-content-md-start"
 		>
 			<NavLinkItemComponent
 				v-for="item in headerLinks"
