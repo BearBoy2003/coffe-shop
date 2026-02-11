@@ -1,0 +1,96 @@
+{
+	"bestsellers": [
+		{
+			"id": "0",
+			"name": "Solimo Coffee Beans 2 kg",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/815O9ktyfUL._SL1500_.jpg",
+			"price": "10.73$"
+		},
+		{
+			"id": "1",
+			"name": "Presto Coffee Beans 1 kg",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/91Ryk2gKejL._SL1500_.jpg",
+			"price": "15.99$"
+		},
+		{
+			"id": "2",
+			"name": "AROMISTICO Coffee 1 kg",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/71qBQnpQFYL._SL1500_.jpg",
+			"price": "6.99$"
+		}
+	],
+	"coffee": [
+		{
+			"id": "0",
+			"name": "Death Wish Bean",
+			"country": "Brazil",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/91DlZZBjxzL._SX522_.jpg",
+			"price": "12.99$",
+			"description": "Premium dark roast for those who love a powerful start. Rich cocoa aroma, dense body, and a confident finish that keeps its character with milk or sugar."
+		},
+		{
+			"id": "1",
+			"name": "AROMISTICO Coffee 1 kg",
+			"country": "Brazil",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/71qBQnpQFYL._SL1500_.jpg",
+			"price": "6.99$",
+			"description": "Smooth everyday blend with a refined aroma and delicate chocolate sweetness. A dependable choice for your daily ritual with a clean, balanced taste."
+		},
+		{
+			"id": "2",
+			"name": "Solimo Coffee Beans 2 kg",
+			"country": "Kenya",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/815O9ktyfUL._SL1500_.jpg",
+			"price": "10.73$",
+			"description": "Signature medium roast with bright fruity notes and a polished finish. Crafted for consistent flavor in every cup, from morning brew to afternoon refill."
+		},
+		{
+			"id": "3",
+			"name": "Black Rifle Coffee",
+			"country": "Kenya",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/91vwF6Kh8IL._SX522_.jpg",
+			"price": "19.75$",
+			"description": "Bold roast with smoky caramel accents and a full-bodied profile. Ideal when you want expressive flavor, strong aroma, and café-style intensity at home."
+		},
+		{
+			"id": "4",
+			"name": "Presto Coffee Beans 1 kg",
+			"country": "Columbia",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/91Ryk2gKejL._SL1500_.jpg",
+			"price": "15.99$",
+			"description": "Classic medium roast with soft vanilla notes and a warm toasted finish. Balanced and versatile, it delivers a smooth premium cup for any brewing method."
+		},
+		{
+			"id": "5",
+			"name": "Organic Coffee One Cup",
+			"country": "Columbia",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/51M2fmEXTIL.jpg",
+			"price": "24.99$",
+			"description": "Organic single-serve coffee with a gentle floral aroma and clean finish. Convenient format, premium taste, and a light elegant profile for everyday enjoyment."
+		}
+	],
+	"goods": [
+		{
+			"id": "0",
+			"name": "Electric Spice and Coffee Grinder",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/41qvqWRCm3L.jpg",
+			"price": "36.99$",
+			"description": "Compact electric grinder with stainless steel blades for fast, even grinding. Perfect for coffee beans and spices when you need consistent results in seconds."
+		},
+		{
+			"id": "1",
+			"name": "Manual Coffee Grinder",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/91gR5HFtmaL._SL1500_.jpg",
+			"price": "25.99$",
+			"description": "Portable hand grinder with adjustable grind size for espresso, moka, and filter. Ideal for home brewing and travel when you want full control over flavor."
+		},
+		{
+			"id": "2",
+			"name": "Coffee Cup with Lid",
+			"image": "https://images-na.ssl-images-amazon.com/images/I/71L5Ut1HHSL._SL1500_.jpg",
+			"price": "15.99$",
+			"description": "Double-wall travel cup with secure lid that keeps drinks hot longer. A practical daily companion for commuting, work, and coffee on the go."
+		}
+	],
+	"contacts": []
+}

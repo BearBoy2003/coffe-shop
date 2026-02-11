@@ -1,5 +1,6 @@
 <template>
-	<div
+	<button
+		type="button"
 		class="shop__item"
 		@click="$emit('click')"
 	>
@@ -8,9 +9,14 @@
 			:alt="title"
 		/>
 		<div class="shop__item-title">{{ title }}</div>
-		<div class="shop__item-country">{{ country }}</div>
+		<div
+			v-if="country"
+			class="shop__item-country"
+		>
+			{{ country }}
+		</div>
 		<div class="shop__item-price">{{ price }}</div>
-	</div>
+	</button>
 </template>
 
 <script>
@@ -26,7 +32,7 @@ export default {
 		},
 		country: {
 			type: String,
-			required: true
+			default: ''
 		},
 		price: {
 			type: String,

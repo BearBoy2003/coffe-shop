@@ -71,7 +71,22 @@
 				<div class="title">Our best</div>
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
-						<div class="best__wrapper">
+						<div
+							v-if="isLoading"
+							class="best__empty"
+						>
+							Loading products...
+						</div>
+						<div
+							v-else-if="loadError"
+							class="best__error"
+						>
+							{{ loadError }}
+						</div>
+						<div
+							v-else-if="bestsellers.length"
+							class="best__wrapper"
+						>
 							<ProductCard
 								v-for="product in bestsellers"
 								:key="product.id"
@@ -79,6 +94,12 @@
 								:title="product.title"
 								:price="product.price"
 							/>
+						</div>
+						<div
+							v-else
+							class="best__empty"
+						>
+							No products found
 						</div>
 					</div>
 				</div>
@@ -92,7 +113,7 @@ import NavBarComponent from '@/components/NavBarComponent.vue'
 import PageHeaderTitleComponent from '@/components/PageHeaderTitleComponent.vue'
 import ProductCard from '@/components/ProductCard.vue'
 import { scrollIntoView } from 'seamless-scroll-polyfill'
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
 	components: {
@@ -100,10 +121,24 @@ export default {
 		ProductCard,
 		PageHeaderTitleComponent
 	},
+	created() {
+		this.fetchBestsellers()
+	},
 	computed: {
-		...mapGetters('products', ['bestsellers'])
+		...mapGetters('products', [
+			'bestsellers',
+			'isProductsLoading',
+			'productsError'
+		]),
+		isLoading() {
+			return this.isProductsLoading('bestsellers')
+		},
+		loadError() {
+			return this.productsError('bestsellers')
+		}
 	},
 	methods: {
+		...mapActions('products', ['fetchBestsellers']),
 		smoothScroll() {
 			scrollIntoView(this.$refs.ourBest, {
 				behavior: 'smooth',

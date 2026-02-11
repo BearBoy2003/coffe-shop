@@ -1,27 +1,21 @@
 <template>
 	<main>
-		<div :class="['banner', bannerClass]">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<NavBarComponent />
-					</div>
-				</div>
-				<PageHeaderTitleComponent :title="title" />
-			</div>
-		</div>
+		<PageBannerComponent
+			:title="title"
+			:banner-class="bannerClass"
+		/>
 		<section class="shop">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-4 offset-2">
+					<div class="col-12 col-lg-4 offset-lg-2">
 						<img
 							class="shop__girl"
 							:src="aboutImage"
 							alt="girl"
 						/>
 					</div>
-					<div class="col-lg-4">
-						<div class="title">About our beans</div>
+					<div class="col-12 col-lg-4 mt-4 mt-lg-0">
+						<div class="title">{{ aboutTitle }}</div>
 						<img
 							class="beanslogo"
 							src="@/assets/logo/Beans_logo_dark.svg"
@@ -54,7 +48,22 @@
 
 				<div class="row">
 					<div class="col-lg-10 offset-lg-1">
-						<div class="shop__wrapper">
+						<div
+							v-if="isLoading"
+							class="shop__empty"
+						>
+							Loading products...
+						</div>
+						<div
+							v-else-if="loadError"
+							class="shop__error"
+						>
+							{{ loadError }}
+						</div>
+						<div
+							v-else-if="products.length"
+							class="shop__wrapper"
+						>
 							<ShopProductCard
 								v-for="item in products"
 								:key="item.id"
@@ -65,6 +74,12 @@
 								@click="navigateToProduct(item.id, detailsRouteName)"
 							/>
 						</div>
+						<div
+							v-else
+							class="shop__empty"
+						>
+							{{ emptyText }}
+						</div>
 					</div>
 				</div>
 			</div>
@@ -73,16 +88,14 @@
 </template>
 
 <script>
-import NavBarComponent from '@/components/NavBarComponent.vue'
-import PageHeaderTitleComponent from '@/components/PageHeaderTitleComponent.vue'
+import PageBannerComponent from '@/components/PageBannerComponent.vue'
 import ShopProductCard from '@/components/ShopProductCard.vue'
 import navigate from '@/mixins/navigate'
 
 export default {
 	mixins: [navigate],
 	components: {
-		NavBarComponent,
-		PageHeaderTitleComponent,
+		PageBannerComponent,
 		ShopProductCard
 	},
 	props: {
@@ -98,9 +111,25 @@ export default {
 			type: String,
 			required: true
 		},
+		aboutTitle: {
+			type: String,
+			default: 'About our beans'
+		},
 		products: {
 			type: Array,
 			required: true
+		},
+		isLoading: {
+			type: Boolean,
+			default: false
+		},
+		loadError: {
+			type: String,
+			default: ''
+		},
+		emptyText: {
+			type: String,
+			default: 'No products found'
 		},
 		detailsRouteName: {
 			type: String,
