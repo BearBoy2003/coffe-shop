@@ -1,20 +1,11 @@
 <template>
 	<main>
-		<div class="banner contactspage-banner">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<NavBarComponent />
-					</div>
-				</div>
-				<PageHeaderTitleComponent title="Thank you" />
-			</div>
-		</div>
+		<PageBannerComponent title="Thank you" />
 		<section class="contacts">
 			<div class="container">
 				<div class="row">
 					<div class="col col-12 col-lg-6 offset-0 offset-lg-3">
-						<div class="title mt-5">Tell us about your tastes</div>
+						<div class="title mt-5">Thank you for your request</div>
 						<img
 							class="beanslogo mt-5"
 							src="@/assets/logo/Beans_logo_dark.svg"
@@ -25,9 +16,9 @@
 
 				<div class="row">
 					<div class="col">
-						<div class="title big__text mt-5">
-							<p>Thank you so much</p>
-							<p>We contact you as soon as posible</p>
+						<div class="title mt-5">
+							<p>Thank you so much!</p>
+							<p>We will contact you as soon as possible.</p>
 							<img
 								src="@/assets/img/thanks.png"
 								alt="thanks-icon"
@@ -41,13 +32,11 @@
 </template>
 
 <script>
-import NavBarComponent from '@/components/NavBarComponent.vue'
-import PageHeaderTitleComponent from '@/components/PageHeaderTitleComponent.vue'
+import PageBannerComponent from '@/components/PageBannerComponent.vue'
 
 export default {
 	components: {
-		NavBarComponent,
-		PageHeaderTitleComponent
+		PageBannerComponent
 	}
 }
 </script>

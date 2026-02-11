@@ -1,15 +1,6 @@
 <template>
 	<main>
-		<div class="banner contactspage-banner">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<NavBarComponent />
-					</div>
-				</div>
-				<PageHeaderTitleComponent title="Contact us" />
-			</div>
-		</div>
+		<PageBannerComponent title="Contact us" />
 		<section class="contacts">
 			<div class="container">
 				<div class="row">
@@ -32,7 +23,7 @@
 										class="mb-0"
 									>
 										Name
-										<span style="color: red">*</span>
+										<span class="contacts__required-mark">*</span>
 									</label>
 								</div>
 								<div class="col col-12 col-sm-9">
@@ -59,7 +50,7 @@
 										class="mb-0"
 									>
 										E-mail
-										<span style="color: red">*</span>
+										<span class="contacts__required-mark">*</span>
 									</label>
 								</div>
 								<div class="col col-12 col-sm-9">
@@ -93,7 +84,7 @@
 										type="tel"
 										class="form-control"
 										id="phone-input"
-										maxlength="15"
+										maxlength="20"
 										v-model="v$.phone.$model"
 									/>
 									<span
@@ -113,7 +104,7 @@
 										class="mb-3 mt-3 text-center"
 									>
 										Your message
-										<span style="color: red">*</span>
+										<span class="contacts__required-mark">*</span>
 									</label>
 								</div>
 								<div class="col col-12">
@@ -164,6 +155,12 @@
 							<div class="row">
 								<div class="col">
 									<button class="btn btn-outline-dark send-btn">Send us</button>
+									<div
+										v-if="submitError"
+										class="text-danger text-center mt-2"
+									>
+										{{ submitError }}
+									</div>
 								</div>
 							</div>
 						</form>
@@ -175,8 +172,8 @@
 </template>
 
 <script>
-import NavBarComponent from '@/components/NavBarComponent.vue'
-import PageHeaderTitleComponent from '@/components/PageHeaderTitleComponent.vue'
+import PageBannerComponent from '@/components/PageBannerComponent.vue'
+import { getApiUrl } from '@/config/api'
 
 import useVuelidate from '@vuelidate/core'
 import { email, helpers, maxLength, minLength, required, sameAs } from '@vuelidate/validators'
@@ -187,13 +184,40 @@ export default {
 	},
 	validations() {
 		return {
-			name: { required },
-			email: { required, email },
-			phone: {},
+			name: {
+				required: helpers.withMessage('Name is required', required)
+			},
+			email: {
+				required: helpers.withMessage('E-mail is required', required),
+				email: helpers.withMessage('Please enter a valid e-mail', email)
+			},
+			phone: {
+				validPhone: helpers.withMessage(
+					'Please enter a valid phone number',
+					(value) => {
+						if (value == null || value === '') {
+							return true
+						}
+
+						const trimmedValue = String(value).trim()
+						if (!trimmedValue) {
+							return false
+						}
+
+						return /^\+?[0-9\s\-()]{7,20}$/.test(trimmedValue)
+					}
+				)
+			},
 			message: {
-				required,
-				maxLength: maxLength(500),
-				minLength: helpers.withMessage('This value min 6', minLength(6))
+				required: helpers.withMessage('Message is required', required),
+				maxLength: helpers.withMessage(
+					'Message must be 500 characters or fewer',
+					maxLength(500)
+				),
+				minLength: helpers.withMessage(
+					'Message must be at least 6 characters',
+					minLength(6)
+				)
 			},
 			offerAccepted: {
 				sameAs: helpers.withMessage(
@@ -204,8 +228,7 @@ export default {
 		}
 	},
 	components: {
-		NavBarComponent,
-		PageHeaderTitleComponent
+		PageBannerComponent
 	},
 	data() {
 		return {
@@ -213,13 +236,52 @@ export default {
 			email: '',
 			phone: '',
 			message: '',
-			offerAccepted: true
+			offerAccepted: true,
+			submitError: ''
 		}
 	},
 	methods: {
+		resetForm() {
+			this.name = ''
+			this.email = ''
+			this.phone = ''
+			this.message = ''
+			this.offerAccepted = true
+
+			this.$nextTick(() => {
+				this.v$.$reset()
+			})
+		},
 		async submitForm() {
 			const isFormCorrect = await this.v$.$validate()
 			if (!isFormCorrect) return
+			this.submitError = ''
+
+			const message = {
+				name: this.name,
+				email: this.email,
+				phone: this.phone,
+				message: this.message
+			}
+
+			try {
+				const response = await fetch(getApiUrl('/contacts'), {
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: JSON.stringify(message)
+				})
+
+				if (!response.ok) {
+					throw new Error('Failed to send contact form')
+				}
+
+				this.resetForm()
+				this.$router.push('/thank-you')
+			} catch (error) {
+				this.submitError = 'Failed to send your message. Please try again.'
+			}
 		}
 	}
 }
